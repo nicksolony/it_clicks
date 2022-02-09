@@ -35,11 +35,14 @@ let pets = [
       let title = `<h3>${pet.name} (${pet.type})</h3>`;
       let img = `<img src="${pet.photoUrl}">`;
       let comments = `<p>${pet.comments}</p>`;
+      let likes= `<button> Like (${pet.numLikes})</button>`
+      
       html += `
         <div id="pet-${i}" class="pet">
           ${img}
           ${title}
           ${comments}
+          ${likes}
         </div>`;
     }
   
@@ -48,4 +51,3 @@ let pets = [
 
 
   showPets();
-  
