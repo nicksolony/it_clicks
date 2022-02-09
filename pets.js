@@ -20,13 +20,13 @@ let pets = [
       type: "Porcupine 🦔",
       photoUrl: "https://pet-ratings.surge.sh/spike.webp",
       comments: "He loves to be petted!",
-      numLikes: 0,
+      numLikes: 5,
     },
   ];
   
   function showPets() {
     console.log("showPets");    
-  
+    sortByLikes(pets)
     let petArea = document.getElementById("pets");
     let html = "";
   
@@ -47,6 +47,14 @@ let pets = [
     }
   
     petArea.innerHTML = html;
+  }
+
+  function sortByLikes(pets) {
+    console.log("sortByLikes", pets);
+  
+    pets.sort(function (a, b) {
+      return b.numLikes - a.numLikes;
+    })
   }
 
 
