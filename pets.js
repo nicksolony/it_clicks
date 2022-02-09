@@ -24,4 +24,28 @@ let pets = [
     },
   ];
   
+  function showPets() {
+    console.log("showPets");    
+  
+    let petArea = document.getElementById("pets");
+    let html = "";
+  
+    for (let i = 0; i < pets.length; i++) {
+      let pet = pets[i];
+      let title = `<h3>${pet.name} (${pet.type})</h3>`;
+      let img = `<img src="${pet.photoUrl}">`;
+      let comments = `<p>${pet.comments}</p>`;
+      html += `
+        <div id="pet-${i}" class="pet">
+          ${img}
+          ${title}
+          ${comments}
+        </div>`;
+    }
+  
+    petArea.innerHTML = html;
+  }
 
+
+  showPets();
+  
