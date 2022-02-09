@@ -57,5 +57,14 @@ let pets = [
     })
   }
 
+  function addPet(name,type,photoUrl,comments) {
+      console.log("addPet", name, type, photoUrl,comments)
+      pets.push({
+          name: name,
+          type: type,
+          photoUrl: photoUrl,
+          comments: comments
+      });
+  }
 
   showPets();
