@@ -1,0 +1,17 @@
+body {
+    margin: 50px;
+    font-family: sans-serif;
+  }
+  
+  h1, h2 {
+    color: darkred;
+  }
+  
+  #pets {
+    width: 500px;
+  }
+  
+  .pet {
+    height: 150px;
+  }
+  
