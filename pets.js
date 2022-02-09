@@ -26,16 +26,16 @@ let pets = [
   
   function showPets() {
     console.log("showPets");    
-    sortByLikes(pets)
+   
     let petArea = document.getElementById("pets");
     let html = "";
-  
+    sortByLikes(pets)
     for (let i = 0; i < pets.length; i++) {
       let pet = pets[i];
       let title = `<h3>${pet.name} (${pet.type})</h3>`;
       let img = `<img src="${pet.photoUrl}">`;
       let comments = `<p>${pet.comments}</p>`;
-      let likes= `<button> Like (${pet.numLikes})</button>`
+      let likes= `<button id="like-${i}"> Like (${pet.numLikes})</button>`
       
       html += `
         <div id="pet-${i}" class="pet">
@@ -57,14 +57,47 @@ let pets = [
     })
   }
 
-  function addPet(name,type,photoUrl,comments) {
+  function addPet(name,type,photoUrl,comments,numLikes) {
       console.log("addPet", name, type, photoUrl,comments)
       pets.push({
           name: name,
           type: type,
           photoUrl: photoUrl,
-          comments: comments
+          comments: comments,
+          numLikes: 0
       });
   }
 
+  function handleSubmit(e) {
+    console.log("handleSubmit");
+    e.preventDefault();
+    let form = document.getElementById("pet-form");
+    let name = form.name.value;
+    let type = form.type.value;
+    let photoUrl = form.photoUrl.value;
+    let comments = form.comments.value;
+    addPet(name, type, photoUrl, comments);
+    showPets();
+  }
+
+  function handleButton(e) {
+    console.log("handleButton", e);
+    
+    if(e.target.id.startsWith("like-")) {
+    let petId = Number(e.target.id.replace("like-", ""));
+    likePet(petId); 
+    showPets();
+    }
+  }
+
+
+  function likePet(id) {
+      console.log("likePet",id)
+      pets[id].numLikes+=1;
+      showPets();
+  }
+
   showPets();
+
+  document.getElementById("pet-form").addEventListener("submit",handleSubmit);
+  document.getElementById("pets").addEventListener("click",handleButton);
